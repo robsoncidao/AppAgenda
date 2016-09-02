@@ -15,6 +15,7 @@
         android:title="@string/lbl_excluir"
         android:orderInCategory="100"
         app:showAsAction="never"
+        android:visible="false"
         />
 
 </menu>
