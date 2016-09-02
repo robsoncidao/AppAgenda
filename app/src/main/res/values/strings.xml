@@ -12,4 +12,6 @@
     <string name="lbl_salvar">Salvar</string>
     <string name="lbl_alterar">Alterar</string>
     <string name="lbl_excluir">Excluir</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

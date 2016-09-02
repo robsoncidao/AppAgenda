@@ -3,6 +3,7 @@ package com.robson.agendacontato;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class actCadContatos extends Activity {
+public class actCadContatos extends AppCompatActivity {
 
     //Criando os campos da agenda
     EditText edtNome;
@@ -28,36 +29,38 @@ public class actCadContatos extends Activity {
     //Armazenar os dados digitados no ArrayAdapter
     ArrayAdapter<String> adpTipoEmail;
     ArrayAdapter<String> adpTipoTelefone;
-    ArrayAdapter<String>adpTipoEndereco;
-    ArrayAdapter<String>adpTipoDatasEspeciais;
+    ArrayAdapter<String> adpTipoEndereco;
+    ArrayAdapter<String> adpTipoDatasEspeciais;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_cad_contatos);
+       // Toolbar toolbar = ( Toolbar ) findViewById( R.id.toolbar );
+        //setSupportActionBar(toolbar);
         //Iniciando os campos da agenda
-        edtNome          = (EditText)findViewById(R.id.edtNome);
-        edtTelefone      = (EditText)findViewById(R.id.edtEndereco);
-        edtEmail         = (EditText)findViewById(R.id.edtEmail);
-        edtEndereco      = (EditText)findViewById(R.id.edtEndereco);
-        edtDataEspeciais = (EditText)findViewById(R.id.edtDatasEspeciais);
-        edtGrupos        = (EditText)findViewById(R.id.edtGrupos);
+        edtNome = (EditText) findViewById(R.id.edtNome);
+        edtTelefone = (EditText) findViewById(R.id.edtEndereco);
+        edtEmail = (EditText) findViewById(R.id.edtEmail);
+        edtEndereco = (EditText) findViewById(R.id.edtEndereco);
+        edtDataEspeciais = (EditText) findViewById(R.id.edtDatasEspeciais);
+        edtGrupos = (EditText) findViewById(R.id.edtGrupos);
 
         //Iniciando as opções de cada campo da agenda
-        spnTipoTelefone  = (Spinner)findViewById(R.id.spnTipoTelefone);
-        spnTipoEmail     = (Spinner)findViewById(R.id.spntTipEmail);
-        spnTipoEndereco  = (Spinner)findViewById(R.id.spnTipoEndereco);
-        spnTipoDataEspeciais = (Spinner)findViewById(R.id.spnTipoDatasEspeciais);
+        spnTipoTelefone = (Spinner) findViewById(R.id.spnTipoTelefone);
+        spnTipoEmail = (Spinner) findViewById(R.id.spntTipEmail);
+        spnTipoEndereco = (Spinner) findViewById(R.id.spnTipoEndereco);
+        spnTipoDataEspeciais = (Spinner) findViewById(R.id.spnTipoDatasEspeciais);
 
         //Iniciando os ArrayAdapter<>
-        adpTipoEmail           = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        adpTipoEmail = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         adpTipoEmail.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        adpTipoTelefone       = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        adpTipoTelefone = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         adpTipoTelefone.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        adpTipoEndereco       = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        adpTipoEndereco = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         adpTipoEndereco.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         adpTipoDatasEspeciais = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
@@ -90,17 +93,19 @@ public class actCadContatos extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //criando a ação para que o menu apareça
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_act_cad_contatos, menu);
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_act_cad_contatos, menu);
+        return true;
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //responsável pela seleção do item selecionado no menu (gerencia qual item do menu foi selecionado)
-        switch (item.getItemId())
-        {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (item.getItemId()) {
             case R.id.mni_acao1:
 
                 break;
@@ -110,3 +115,4 @@ public class actCadContatos extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
+
