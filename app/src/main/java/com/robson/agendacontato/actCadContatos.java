@@ -1,12 +1,16 @@
 package com.robson.agendacontato;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class actCadContatos extends AppCompatActivity {
+public class actCadContatos extends Activity {
 
     //Criando os campos da agenda
     EditText edtNome;
@@ -82,7 +86,27 @@ public class actCadContatos extends AppCompatActivity {
         adpTipoDatasEspeciais.add("Aniversário");
         adpTipoDatasEspeciais.add("Data comemorativa");
         adpTipoDatasEspeciais.add("Outros");
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //criando a ação para que o menu apareça
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_act_cad_contatos, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //responsável pela seleção do item selecionado no menu (gerencia qual item do menu foi selecionado)
+        switch (item.getItemId())
+        {
+            case R.id.mni_acao1:
+
+                break;
+            case R.id.mni_acao2:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
