@@ -9,7 +9,7 @@ public class ScriptSQL {
 
         //builder é utilizado para juntar uma string grande
         StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append( "CREATE TABLE IF NOT EXISTS CONTATO( ");
+        sqlBuilder.append( "CREATE TABLE IF NOT EXISTS CONTATO ( ");
         sqlBuilder.append( "_ID INTEGER NOT NULL " );
         sqlBuilder.append( "PRIMARY KEY AUTOINCREMENT," );
         sqlBuilder.append( "TELEFONE       VARCHAR(14), ");
@@ -21,6 +21,7 @@ public class ScriptSQL {
         sqlBuilder.append( "DATASESPECIAIS VARCHAR(1), ");
         sqlBuilder.append( "TIPOESPECIAIS  VARCHAR(1), " );
         sqlBuilder.append( "GRUPOS         VARCHAR(255) ");
+        sqlBuilder.append( ");" );
 
     return sqlBuilder.toString();
 
