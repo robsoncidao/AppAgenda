@@ -11,41 +11,36 @@ import android.widget.ArrayAdapter;
  */
 public class RepositorioContato {
 
-    //Conexão com o banco
-    SQLiteDatabase comn;
+    //Conexão do banco de dados
+    SQLiteDatabase conn;
 
-    public RepositorioContato(SQLiteDatabase comn){
-        this.comn = comn;
+    public RepositorioContato(SQLiteDatabase conn) {
+        this.conn = conn;
     }
 
-    public  void testeInserirContato() {
-        for (int i = 0; i < 5; i++) {
+    public void testeInserirContato() {
+        for (int i = 0; i < 10; i++) {
             ContentValues values = new ContentValues();
-            values.put( "TELEFONE", "32611780" );
-            comn.insert( "CONTATO", null, values );
+            values.put( "TELEFONE", "3261-1908" );
+            conn.insertOrThrow( "CONTATO", null, values );
         }
-
     }
 
-    //ArrayAdapter para pencher o listView (lstContatos)
-    public ArrayAdapter<String> buscaContatos(Context context){
+    public ArrayAdapter<String> buscaContatos(Context context) {
+
         ArrayAdapter<String> adpContatos = new ArrayAdapter<String>( context, android.R.layout.simple_list_item_1 );
 
-        //Método responsavel pela consulta e responsável por armazenar todos registros buscados
-        Cursor cursor = comn.query( "CONTATO", null, null, null, null, null, null );
-        //verificando se retornou alguma dado na busca na tabela
-        if (cursor.getCount() > 0);{
+        Cursor cursor = conn.query( "CONTATO", null, null, null, null, null, null );
+
+        if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            do{
+            do {
                 String telefone = cursor.getString( 1 );
                 adpContatos.add( telefone );
-            }while (cursor.moveToNext());
-
-
+            } while (cursor.moveToNext());
         }
         return adpContatos;
     }
-
 
 
 }
