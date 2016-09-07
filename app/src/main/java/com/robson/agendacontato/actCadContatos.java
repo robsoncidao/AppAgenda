@@ -1,6 +1,9 @@
 package com.robson.agendacontato;
 
 import android.app.Activity;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.robson.agendacontato.databese.DataBase;
+import com.robson.agendacontato.dominio.RepositorioContato;
+import com.robson.agendacontato.dominio.entidades.Contato;
+
+import java.util.Date;
+
 public class actCadContatos extends AppCompatActivity {
 
     //Criando os campos da agenda
@@ -20,17 +29,28 @@ public class actCadContatos extends AppCompatActivity {
     EditText edtEndereco;
     EditText edtDataEspeciais;
     EditText edtGrupos;
-    //Criando as opções de cada campo
+    //Criando os Spinner
     Spinner spnTipoTelefone;
     Spinner spnTipoEmail;
     Spinner spnTipoEndereco;
     Spinner spnTipoDataEspeciais;
 
-    //Armazenar os dados digitados no ArrayAdapter
+    // Armazenar os dados digitados no ArrayAdapter
     ArrayAdapter<String> adpTipoEmail;
     ArrayAdapter<String> adpTipoTelefone;
     ArrayAdapter<String> adpTipoEndereco;
     ArrayAdapter<String> adpTipoDatasEspeciais;
+
+    //criando o objeto dataBase
+    DataBase dataBase;
+    //criando conexão com o banco
+    SQLiteDatabase conn;
+
+    //referência para a pasta dominio arquivo RespositórioContato
+    RepositorioContato repositorioContato;
+
+    //Adicionando a classe Contato
+    Contato contato;
 
 
     @Override
@@ -41,7 +61,7 @@ public class actCadContatos extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         //Iniciando os campos da agenda
         edtNome = (EditText) findViewById(R.id.edtNome);
-        edtTelefone = (EditText) findViewById(R.id.edtEndereco);
+        edtTelefone = (EditText) findViewById(R.id.edtTelefone);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtEndereco = (EditText) findViewById(R.id.edtEndereco);
         edtDataEspeciais = (EditText) findViewById(R.id.edtDatasEspeciais);
@@ -89,6 +109,26 @@ public class actCadContatos extends AppCompatActivity {
         adpTipoDatasEspeciais.add("Aniversário");
         adpTipoDatasEspeciais.add("Data comemorativa");
         adpTipoDatasEspeciais.add("Outros");
+
+
+        //sempre que estiver usando banco de dados colocar dentro de um try cach
+        try {
+            //criando a conexão com a base de dados
+            dataBase = new DataBase(this);
+            //permite a criação, escrita e alteração do banco de dados
+            conn = dataBase.getWritableDatabase();
+
+            //repositorio contato é o arquivo que contém o CRUD
+            repositorioContato = new RepositorioContato( conn );
+
+
+        }catch (SQLException ex){
+            AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
+            dlg1.setMessage( "Erro ao criar o banco: " + ex.getMessage() );
+            dlg1.setNeutralButton( "OK", null );
+            dlg1.show();
+
+        }
     }
 
     @Override
@@ -97,14 +137,11 @@ public class actCadContatos extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_act_cad_contatos, menu);
         return true;
     }
-
+// Criação das ações de menu da tela de cadastro de contato
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Opções de ação do menu na tela de cadastro de contato
         switch (item.getItemId()) {
             case R.id.mni_acao1:
 
@@ -114,5 +151,27 @@ public class actCadContatos extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void inserirContato(){
+        contato = new Contato();
+
+        contato.setNome( edtNome.getText().toString() );
+        contato.setTelefone( edtTelefone.getText().toString() );
+        contato.setEmail( edtEmail.getText().toString());
+        contato.setEndereco( edtEndereco.getText().toString() );
+        Date date = new Date(  );
+        contato.setDataEspeciais(date );
+        contato.setGrupos( edtGrupos.getText().toString() );
+
+
+        contato.setTipoTelefone("");
+        contato.setTipoEmail("");
+        contato.setTipoEndereco("");
+        contato.setTipoDataEspeciais("");
+
+
+        repositorioContato.inserirContato( contato );
+    }
+
 }
 

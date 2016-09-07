@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //referência para a pasta dominio arquivo RespositórioContato
     RepositorioContato repositorioContato;
-   // RepositorioContato repositorioContato;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +50,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //permite a criação, escrita e alteração do banco de dados
             conn = dataBase.getWritableDatabase();
 
+            //repositorio contato é o arquivo que contém o CRUD
             repositorioContato = new RepositorioContato( conn );
 
-            repositorioContato.testeInserirContato();
 
+            //Método para buscar contatos colocando os registros dentro do ArrayAdapter
             adpContatos = repositorioContato.buscaContatos( this );
 
             //atribuindo a listaView ao arrayAdapter
             lstContatos.setAdapter( adpContatos );
 
-
-
-            AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
-            dlg1.setMessage( "Conexão criada com sucesso" );
-            dlg1.setNeutralButton( "OK", null );
-            dlg1.show();
         }catch (SQLException ex){
             AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
             dlg1.setMessage( "Erro ao criar o banco: " + ex.getMessage() );
