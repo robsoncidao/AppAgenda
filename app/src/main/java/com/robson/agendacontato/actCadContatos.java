@@ -45,7 +45,6 @@ public class actCadContatos extends AppCompatActivity {
     DataBase dataBase;
     //criando conexão com o banco
     SQLiteDatabase conn;
-
     //referência para a pasta dominio arquivo RespositórioContato
     RepositorioContato repositorioContato;
 
@@ -93,7 +92,7 @@ public class actCadContatos extends AppCompatActivity {
         spnTipoDataEspeciais.setAdapter(adpTipoDatasEspeciais);
 
         //Adicionando os itens da cada Spnnier
-        adpTipoEmail.add("Casa");
+        adpTipoEmail.add("Pessoal");
         adpTipoEmail.add("Trabalho");
         adpTipoEmail.add("Outros");
 
@@ -118,15 +117,15 @@ public class actCadContatos extends AppCompatActivity {
             //permite a criação, escrita e alteração do banco de dados
             conn = dataBase.getWritableDatabase();
 
-            //repositorio contato é o arquivo que contém o CRUD
+            //repositorio contato é o arquivo que contem o CRUD
             repositorioContato = new RepositorioContato( conn );
 
 
         }catch (SQLException ex){
-            AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
-            dlg1.setMessage( "Erro ao criar o banco: " + ex.getMessage() );
-            dlg1.setNeutralButton( "OK", null );
-            dlg1.show();
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage( "Erro ao criar o banco: " + ex.getMessage() );
+            dlg.setNeutralButton( "OK", null );
+            dlg.show();
 
         }
     }
@@ -144,7 +143,16 @@ public class actCadContatos extends AppCompatActivity {
         //Opções de ação do menu na tela de cadastro de contato
         switch (item.getItemId()) {
             case R.id.mni_acao1:
-
+                if (contato == null){
+                    inserir();
+                }
+                /** teste do botão salvar
+                AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
+                dlg1.setMessage( "Você escolheu Salvar " );
+                dlg1.setNeutralButton( "OK", null );
+                dlg1.show();
+                */
+               // finish();
                 break;
             case R.id.mni_acao2:
                 break;
@@ -152,25 +160,35 @@ public class actCadContatos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void inserirContato(){
-        contato = new Contato();
+    private void inserir() {
+        try {
+            //Método responsável por receber os dados digitados pelo usuário
+            contato = new Contato();
 
-        contato.setNome( edtNome.getText().toString() );
-        contato.setTelefone( edtTelefone.getText().toString() );
-        contato.setEmail( edtEmail.getText().toString());
-        contato.setEndereco( edtEndereco.getText().toString() );
-        Date date = new Date(  );
-        contato.setDataEspeciais(date );
-        contato.setGrupos( edtGrupos.getText().toString() );
+            contato.setNome( edtNome.getText().toString() );
+            contato.setTelefone( edtTelefone.getText().toString() );
+            contato.setEmail( edtEmail.getText().toString() );
+            contato.setEndereco( edtEndereco.getText().toString() );
 
+            Date date = new Date();
+            contato.setDataEspeciais( date );
 
-        contato.setTipoTelefone("");
-        contato.setTipoEmail("");
-        contato.setTipoEndereco("");
-        contato.setTipoDataEspeciais("");
+            contato.setGrupos( edtGrupos.getText().toString() );
 
 
-        repositorioContato.inserirContato( contato );
+            contato.setTipoTelefone( "" );
+            contato.setTipoEmail( "" );
+            contato.setTipoEndereco( "" );
+            contato.setTipoDataEspeciais( "" );
+
+
+            repositorioContato.inserir( contato );
+        } catch (Exception ex) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder( this );
+            dlg.setMessage( "Erro ao inserir os dados: " + ex.getMessage() );
+            dlg.setNeutralButton( "OK", null );
+            dlg.show();
+        }
     }
 
 }

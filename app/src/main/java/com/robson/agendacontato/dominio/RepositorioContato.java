@@ -20,23 +20,23 @@ public class RepositorioContato {
         this.conn = conn;
     }
 
-    public void inserirContato(Contato contato){
-        //Dados preenchidos pelo usuários
+    public void inserir(Contato contato){
+        //Criação dos parâmetros da tela de cadastro de contato
         ContentValues values = new ContentValues();
-        values.put( "NOME", contato.getNome());
-        values.put( "TELEFONE", contato.getTelefone());
-        values.put( "TIPOTELEFONE", contato.getTipoTelefone());
-        values.put( "EMAIL", contato.getEmail());
-        values.put( "TIPOEMAIL", contato.getTipoEmail());
-        values.put( "ENDERECO", contato.getEndereco());
-        values.put( "TIPOENDERECO", contato.getTipoEndereco());
-        //getTime() converte a data em um inteiro para salvar no banco
-        values.put( "DATASESPECIAIS", contato.getDataEspeciais().getTime());
-        values.put( "TIPODATASESPECIAIS", contato.getTipoDataEspeciais());
-        values.put( "GRUPOS",contato.getGrupos());
+       // values.put("Nome", contato.getNome());
+        values.put("TELEFONE", contato.getTipoTelefone() );
+        values.put("TIPOTELEFONE", contato.getTipoTelefone());
+        values.put("EMAIL", contato.getEmail());
+        values.put("TIPOEMAIL", contato.getTipoEmail());
+        values.put("ENDERECO", contato.getEndereco());
+        values.put("TIPOENDERECO", contato.getTipoEndereco());
+        values.put("DATAESPECIAIS", contato.getDataEspeciais().getTime());
+        values.put("TIPODATAESPECIAS", contato.getTipoDataEspeciais());
+        values.put("GRUPOS", contato.getGrupos());
 
-        //inserindo os dados na tabela contato
-        conn.insertOrThrow( "CONTATO", null, values );
+        //salvar os dados
+        conn.insertOrThrow("CONTATO", null, values );
+
     }
     /*
     public void testeInserirContato() {

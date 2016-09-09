@@ -7,17 +7,17 @@ import java.util.Date;
  */
 public class Contato {
 
-    private long   id;
-    private String nome;
-    private String telefone;
-    private String tipoTelefone;
-    private String email;
-    private String tipoEmail;
-    private String endereco;
-    private String tipoEndereco;
-    private Date   dataEspeciais;
-    private String tipoDataEspeciais;
-    private String grupos;
+     long   id;
+     String nome;
+     String telefone;
+     String tipoTelefone;
+     String email;
+     String tipoEmail;
+     String endereco;
+     String tipoEndereco;
+     Date   dataEspeciais;
+     String tipoDataEspeciais;
+     String grupos;
 
     public Contato() {
 

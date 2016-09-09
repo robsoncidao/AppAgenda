@@ -60,6 +60,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //atribuindo a listaView ao arrayAdapter
             lstContatos.setAdapter( adpContatos );
 
+            /** teste mensagem de criação de conexão de banco de dados
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage( "Conexão criada com sucesso ");
+            dlg.setNeutralButton( "OK", null );
+            dlg.show();
+             **/
+
         }catch (SQLException ex){
             AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
             dlg1.setMessage( "Erro ao criar o banco: " + ex.getMessage() );
