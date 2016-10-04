@@ -15,8 +15,8 @@ public class Contato {
      String tipoEmail;
      String endereco;
      String tipoEndereco;
-     Date   dataEspeciais;
-     String tipoDataEspeciais;
+     Date   datasEspeciais;
+     String tipoDatasEspeciais;
      String grupos;
 
     public Contato() {
@@ -87,20 +87,20 @@ public class Contato {
         this.tipoEndereco = tipoEndereco;
     }
 
-    public Date getDataEspeciais() {
-        return dataEspeciais;
+    public Date getDatasEspeciais() {
+        return datasEspeciais;
     }
 
-    public void setDataEspeciais(Date dataEspeciais) {
-        this.dataEspeciais = dataEspeciais;
+    public void setDatasEspeciais(Date dataEspeciais) {
+        this.datasEspeciais = dataEspeciais;
     }
 
-    public String getTipoDataEspeciais() {
-        return tipoDataEspeciais;
+    public String getTipoDatasEspeciais() {
+        return tipoDatasEspeciais;
     }
 
-    public void setTipoDataEspeciais(String tipoDataEspeciais) {
-        this.tipoDataEspeciais = tipoDataEspeciais;
+    public void setTipoDatasEspeciais(String tipoDatasEspeciais) {
+        this.tipoDatasEspeciais = tipoDatasEspeciais;
     }
 
     public String getGrupos() {

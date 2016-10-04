@@ -20,7 +20,7 @@ public class ScriptSQL {
         sqlBuilder.append( "ENDERECO       VARCHAR(255), ");
         sqlBuilder.append( "TIPOENDERECO   VARCHAR(1), ");
         sqlBuilder.append( "DATASESPECIAIS VARCHAR(1), ");
-        sqlBuilder.append( "TIPOESPECIAIS  VARCHAR(1), " );
+        sqlBuilder.append( "TIPODATASESPECIAIS  VARCHAR(1), " );
         sqlBuilder.append( "GRUPOS         VARCHAR(255) ");
         sqlBuilder.append( ");" );
 

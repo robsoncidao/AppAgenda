@@ -19,33 +19,37 @@ public class RepositorioContato {
     public RepositorioContato(SQLiteDatabase conn) {
         this.conn = conn;
     }
-
+/*
     public void inserir(Contato contato){
         //Criação dos parâmetros da tela de cadastro de contato
         ContentValues values = new ContentValues();
-       // values.put("Nome", contato.getNome());
+       // values.put("NOME", contato.getNome());
         values.put("TELEFONE", contato.getTipoTelefone() );
         values.put("TIPOTELEFONE", contato.getTipoTelefone());
         values.put("EMAIL", contato.getEmail());
         values.put("TIPOEMAIL", contato.getTipoEmail());
         values.put("ENDERECO", contato.getEndereco());
         values.put("TIPOENDERECO", contato.getTipoEndereco());
-        values.put("DATAESPECIAIS", contato.getDataEspeciais().getTime());
-        values.put("TIPODATAESPECIAS", contato.getTipoDataEspeciais());
+        values.put("DATASESPECIAIS", contato.getDatasEspeciais().getTime());
+        values.put("TIPODATASESPECIAIS", contato.getTipoDatasEspeciais());
         values.put("GRUPOS", contato.getGrupos());
 
         //salvar os dados
         conn.insertOrThrow("CONTATO", null, values );
 
     }
-    /*
+    */
     public void testeInserirContato() {
         for (int i = 0; i < 10; i++) {
             ContentValues values = new ContentValues();
             values.put( "TELEFONE", "3261-1908" );
             conn.insertOrThrow( "CONTATO", null, values );
+
+            //salvar os dados
+            conn.insertOrThrow("CONTATO", null, values );
         }
-    }*/
+
+    }
 
     public ArrayAdapter<String> buscaContatos(Context context) {
 
