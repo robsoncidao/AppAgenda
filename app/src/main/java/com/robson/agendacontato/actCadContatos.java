@@ -144,7 +144,7 @@ public class actCadContatos extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.mni_acao1:
                 if (contato == null){
-                    inserir();
+             //       inserir();
                 }
                 /** teste do botão salvar
                 AlertDialog.Builder dlg1 = new AlertDialog.Builder(this);
@@ -152,14 +152,14 @@ public class actCadContatos extends AppCompatActivity {
                 dlg1.setNeutralButton( "OK", null );
                 dlg1.show();
                 */
-               // finish();
+                finish();
                 break;
             case R.id.mni_acao2:
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
+/**
     private void inserir() {
         try {
             //Método responsável por receber os dados digitados pelo usuário
@@ -171,7 +171,7 @@ public class actCadContatos extends AppCompatActivity {
             contato.setEndereco( edtEndereco.getText().toString() );
 
             Date date = new Date();
-            contato.setDataEspeciais( date );
+            contato.setDatasEspeciais( date );
 
             contato.setGrupos( edtGrupos.getText().toString() );
 
@@ -179,7 +179,7 @@ public class actCadContatos extends AppCompatActivity {
             contato.setTipoTelefone( "" );
             contato.setTipoEmail( "" );
             contato.setTipoEndereco( "" );
-            contato.setTipoDataEspeciais( "" );
+            contato.setTipoDatasEspeciais( "" );
 
 
             repositorioContato.inserir( contato );
@@ -189,7 +189,7 @@ public class actCadContatos extends AppCompatActivity {
             dlg.setNeutralButton( "OK", null );
             dlg.show();
         }
-    }
+    } **/
 
 }
 
